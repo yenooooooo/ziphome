@@ -10,6 +10,7 @@
 import ZjSideNav from "@/components/zipjikimi/layout/ZjSideNav";
 import ZjBottomTabBar from "@/components/zipjikimi/layout/ZjBottomTabBar";
 import ZjServiceWorkerRegister from "@/components/zipjikimi/layout/ZjServiceWorkerRegister";
+import ZjScrollToTop from "@/components/zipjikimi/layout/ZjScrollToTop";
 
 export default function ZipjikimiLayout({
   children,
@@ -28,6 +29,7 @@ export default function ZipjikimiLayout({
         {children}
       </main>
       <ZjBottomTabBar />
+      <ZjScrollToTop />
       <ZjServiceWorkerRegister />
     </div>
   );
