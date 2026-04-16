@@ -312,6 +312,44 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [buildingMatchCount, currentTx.loading]);
 
+  // ---- 유형 자동 폴백: 선택된 유형에 데이터 0건이면 다른 유형 자동 시도 ----
+  const [fallbackMsg, setFallbackMsg] = useState<string | null>(null);
+  useEffect(() => {
+    if (currentTx.loading || userOverrode) return;
+    const saleCount = currentTx.sale?.count ?? 0;
+    const rentCount = currentTx.rent?.count ?? 0;
+    if (saleCount + rentCount > 0) {
+      setFallbackMsg(null);
+      return;
+    }
+    // 0건 → 다른 유형 중 데이터 있는 것 찾기
+    const original = propertyType;
+    const fallbackOrder: ZjPropertyType[] = ["아파트", "연립다세대", "오피스텔", "단독다가구"];
+    for (const alt of fallbackOrder) {
+      if (alt === original) continue;
+      const altTx = txMap[alt];
+      if (altTx.sale || altTx.rent) {
+        const altTotal = (altTx.sale?.count ?? 0) + (altTx.rent?.count ?? 0);
+        if (altTotal > 0) {
+          setPropertyType(alt);
+          setFallbackMsg(`${original} 거래 0건 → ${alt} 시세로 대체 표시 중. 동네 전체 ${alt} 기준입니다.`);
+          return;
+        }
+      }
+    }
+    // 아직 로드 안 된 유형이면 로드 트리거 (fetchedRef 기반)
+    for (const alt of fallbackOrder) {
+      if (alt === original) continue;
+      if (!fetchedRef.current.has(`${regionCode}:${alt}`)) {
+        setPropertyType(alt);
+        setFallbackMsg(`${original} 거래 0건 → ${alt} 시세 조회 중...`);
+        return;
+      }
+    }
+    setFallbackMsg(`${original} 포함 모든 유형에서 거래 데이터가 없습니다.`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTx.loading, currentTx.sale?.count, currentTx.rent?.count]);
+
   if (loading) {
     return (
       <div className="space-y-5">
@@ -490,6 +528,13 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
                 : `이 시군구(${resolved?.sigungu}) 전체 ${propertyType} 평균입니다.`}
             </p>
           </div>
+
+          {/* 자동 폴백 안내 배너 */}
+          {fallbackMsg && (
+            <div className="rounded-2xl bg-tertiary-fixed/60 px-4 py-3 text-[13px] text-on-tertiary-fixed font-medium leading-relaxed">
+              ⚠️ {fallbackMsg}
+            </div>
+          )}
         </CardContent>
       </Card>
 

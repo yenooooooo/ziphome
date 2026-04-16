@@ -44,7 +44,7 @@ export default function ZjPriceScatterChart({
 
   const summary = mode === "sale" ? saleSummary : jeonseSummary;
 
-  const { points, avg } = useMemo(() => {
+  const { points, avg, totalCount } = useMemo(() => {
     if (!summary) return { points: [], avg: 0 };
     const pts: Point[] = [];
     let total = 0;
@@ -61,7 +61,9 @@ export default function ZjPriceScatterChart({
       total += price;
       count++;
     }
-    return { points: pts, avg: count > 0 ? total / count : 0 };
+    // 최대 100건만 표시 (SVG 렌더링 성능)
+    const limited = pts.length > 100 ? pts.slice(0, 100) : pts;
+    return { points: limited, avg: count > 0 ? total / count : 0, totalCount: pts.length };
   }, [summary, mode, axis]);
 
   const hasData = points.length >= 3;
@@ -170,7 +172,10 @@ export default function ZjPriceScatterChart({
               <span className="flex items-center gap-1.5">
                 <span className="h-0.5 w-4 bg-[#5f8aff]" style={{ borderTop: "2px dashed #5f8aff" }} /> 평균
               </span>
-              <span className="ml-auto">{points.length}건</span>
+              <span className="ml-auto">
+                {points.length}건 표시
+                {(totalCount ?? 0) > 100 && ` (전체 ${totalCount}건)`}
+              </span>
             </div>
           </>
         )}
