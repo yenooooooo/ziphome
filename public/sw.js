@@ -56,16 +56,18 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // 기타 정적 자산 → Cache First
+  // 기타 정적 자산 → Cache First (fetch 실패 시 graceful fallback)
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
-      return fetch(request).then((res) => {
-        if (!res || res.status !== 200 || res.type !== "basic") return res;
-        const copy = res.clone();
-        caches.open(CACHE_NAME).then((c) => c.put(request, copy));
-        return res;
-      });
+      return fetch(request)
+        .then((res) => {
+          if (!res || res.status !== 200 || res.type !== "basic") return res;
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((c) => c.put(request, copy));
+          return res;
+        })
+        .catch(() => new Response("", { status: 408 }));
     }),
   );
 });
