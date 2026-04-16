@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(git --version)",
+      "Bash(mkdir -p _preserve)",
+      "Bash(mv CLAUDE.md PLAN.md DATABASE.sql _preserve/)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --use-npm --import-alias \"@/*\" --yes)",
+      "Bash(npx --yes create-next-app@latest zipjikimi --typescript --tailwind --eslint --app --src-dir --use-npm --import-alias \"@/*\" --yes)",
+      "Bash(shopt -s dotglob)",
+      "Bash(mv * ..)",
+      "Read(//c/Users/ailee/github/**)",
+      "Bash(rmdir zipjikimi *)",
+      "Bash(rm CLAUDE.md AGENTS.md)",
+      "Bash(mv _preserve/* .)",
+      "Bash(rmdir _preserve)",
+      "Bash(npm install *)",
+      "Bash(node scripts/generate-icons.mjs)",
+      "Bash(npx --yes shadcn@latest add button card input badge label --yes --overwrite)",
+      "Bash(npm run *)",
+      "Bash(npx --yes shadcn@latest add sonner tabs select separator skeleton --yes --overwrite)",
+      "Bash(ls -la .env*)",
+      "WebSearch",
+      "WebFetch(domain:www.data.go.kr)",
+      "WebFetch(domain:qquack.org)",
+      "Bash(npx --yes shadcn@latest add dialog --yes --overwrite)",
+      "Bash(curl -s \"https://ziphome.vercel.app\")",
+      "Bash(curl -s \"https://ziphome.vercel.app/api/land-use?pnu=1154510100005500017\")",
+      "Bash(curl -s \"https://ziphome.vercel.app/api/vworld/ned/data/getLandUseAttr?key=F670A94A-9756-3238-933F-AACD1E73638F&pnu=1111016800101510000&format=json&numOfRows=10&pageNo=1&domain=ziphome.vercel.app\")",
+      "Bash(curl -s \"https://ziphome.vercel.app/api/vworld/ned/data/getLandUseAttr?key=F670A94A-9756-3238-933F-AACD1E73638F&pnu=1154510300101090001&format=json&numOfRows=10&pageNo=1&domain=ziphome.vercel.app\")",
+      "Bash(curl -s \"https://api.vworld.kr/ned/data/getLandUseAttr?key=F670A94A-9756-3238-933F-AACD1E73638F&pnu=1111016800001510000&format=json&numOfRows=3&pageNo=1&domain=ziphome.vercel.app\")",
+      "Bash(curl -s \"https://api.vworld.kr/ned/data/getLandUseAttr?key=F670A94A-9756-3238-933F-AACD1E73638F&pnu=1111016800101510000&format=json&numOfRows=3&pageNo=1&domain=ziphome.vercel.app\")"
+    ]
+  }
+}
