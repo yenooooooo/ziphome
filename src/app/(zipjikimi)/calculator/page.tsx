@@ -10,6 +10,7 @@ import ZjMobileHeader from "@/components/zipjikimi/layout/ZjMobileHeader";
 import ZjConversionCalc from "@/components/zipjikimi/calculator/ZjConversionCalc";
 import ZjBrokerageFeeCalc from "@/components/zipjikimi/calculator/ZjBrokerageFeeCalc";
 import ZjInsuranceCalc from "@/components/zipjikimi/calculator/ZjInsuranceCalc";
+import ZjLoanSimulator from "@/components/zipjikimi/calculator/ZjLoanSimulator";
 
 export default function ZjCalculatorPage() {
   return (
@@ -28,24 +29,30 @@ export default function ZjCalculatorPage() {
         </div>
 
         <Tabs defaultValue="conversion" className="w-full pt-2">
-          <TabsList className="w-full h-12 rounded-full bg-surface-container-low p-1">
+          <TabsList className="w-full h-12 rounded-full bg-surface-container-low p-1 overflow-x-auto">
             <TabsTrigger
               value="conversion"
-              className="flex-1 rounded-full text-[13px] data-[state=active]:bg-surface-container-lowest data-[state=active]:shadow-float font-semibold"
+              className="flex-1 rounded-full text-[12px] data-[state=active]:bg-surface-container-lowest data-[state=active]:shadow-float font-semibold"
             >
-              전월세 전환
+              전환
             </TabsTrigger>
             <TabsTrigger
               value="brokerage"
-              className="flex-1 rounded-full text-[13px] data-[state=active]:bg-surface-container-lowest data-[state=active]:shadow-float font-semibold"
+              className="flex-1 rounded-full text-[12px] data-[state=active]:bg-surface-container-lowest data-[state=active]:shadow-float font-semibold"
             >
-              중개수수료
+              수수료
             </TabsTrigger>
             <TabsTrigger
               value="insurance"
-              className="flex-1 rounded-full text-[13px] data-[state=active]:bg-surface-container-lowest data-[state=active]:shadow-float font-semibold"
+              className="flex-1 rounded-full text-[12px] data-[state=active]:bg-surface-container-lowest data-[state=active]:shadow-float font-semibold"
             >
-              보증보험
+              보험
+            </TabsTrigger>
+            <TabsTrigger
+              value="loan"
+              className="flex-1 rounded-full text-[12px] data-[state=active]:bg-surface-container-lowest data-[state=active]:shadow-float font-semibold"
+            >
+              대출+비교
             </TabsTrigger>
           </TabsList>
           <TabsContent value="conversion" className="mt-6">
@@ -56,6 +63,9 @@ export default function ZjCalculatorPage() {
           </TabsContent>
           <TabsContent value="insurance" className="mt-6">
             <ZjInsuranceCalc />
+          </TabsContent>
+          <TabsContent value="loan" className="mt-6">
+            <ZjLoanSimulator />
           </TabsContent>
         </Tabs>
       </div>

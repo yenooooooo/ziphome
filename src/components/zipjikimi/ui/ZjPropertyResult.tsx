@@ -14,6 +14,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MapPin, Share2, Bookmark } from "lucide-react";
 import { useSavedProperties } from "@/hooks/zipjikimi/useSavedProperties";
+import ZjPdfExportButton from "./ZjPdfExportButton";
 import { cn } from "@/lib/utils";
 import ZjSummaryReportCard from "./ZjSummaryReportCard";
 import ZjSimilarDealsHint from "./ZjSimilarDealsHint";
@@ -25,9 +26,11 @@ import ZjRegistryCard from "./ZjRegistryCard";
 import ZjSafetyVerificationCard from "./ZjSafetyVerificationCard";
 import ZjFraudDetectionCard from "./ZjFraudDetectionCard";
 import ZjSafetyEnvironmentCard from "./ZjSafetyEnvironmentCard";
+import ZjNewsAlertCard from "./ZjNewsAlertCard";
 import ZjLandUseCard from "./ZjLandUseCard";
 import ZjRedevelopmentCard from "./ZjRedevelopmentCard";
 import ZjPriceTrendChart from "../charts/ZjPriceTrendChart";
+import ZjPriceScatterChart from "../charts/ZjPriceScatterChart";
 import ZjNearbyFacilitiesCard from "../map/ZjNearbyFacilitiesCard";
 import { summarize } from "@/lib/zipjikimi/analysis/transactionSummary";
 import type { ZjAdequacyResult } from "@/lib/zipjikimi/analysis/priceAdequacy";
@@ -333,8 +336,8 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
   const { resolved, building, landUse, landUseError } = base;
 
   return (
-    <div className="space-y-5">
-      {/* 위치 히어로 + 공유 버튼 */}
+    <div id="zj-result-container" className="space-y-5">
+      {/* 위치 히어로 + 저장/공유/PDF */}
       {resolved && (
         <Card className="bg-gradient-primary text-white border-0 shadow-ambient-lg">
           <CardContent className="flex items-start gap-4">
@@ -394,6 +397,7 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
               >
                 <Share2 className="h-4 w-4" strokeWidth={2.5} />
               </button>
+              <ZjPdfExportButton />
             </div>
           </CardContent>
         </Card>
@@ -500,6 +504,11 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
         />
       )}
 
+      {/* 가격 분포 산점도 */}
+      {!currentTx.loading && (
+        <ZjPriceScatterChart saleSummary={shownSale} jeonseSummary={shownJeonse} />
+      )}
+
       {/* 실거래 내역 */}
       {currentTx.loading ? (
         <Skeleton className="h-96 rounded-[2rem]" />
@@ -562,6 +571,9 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
 
       {/* F15+F16 임대인/중개사 확인 (사업자번호 입력) */}
       <ZjSafetyVerificationCard />
+
+      {/* 전세사기 뉴스 경고 */}
+      <ZjNewsAlertCard sigungu={resolved?.sigungu} />
 
       {/* F18+F19+F20 범죄/재해/소음 환경 */}
       <ZjSafetyEnvironmentCard sido={resolved?.sido} sigungu={resolved?.sigungu} />
