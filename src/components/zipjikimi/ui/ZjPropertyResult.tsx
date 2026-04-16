@@ -158,6 +158,8 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
     setUserOverrode(false);
     setFilterMode("building");
     fetchedRef.current.clear();
+    fallbackTriedRef.current.clear();
+    setFallbackMsg(null);
 
     (async () => {
       const addrRes = await fetch(`/api/address?q=${encodeURIComponent(address)}`);
@@ -314,41 +316,49 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
 
   // ---- 유형 자동 폴백: 선택된 유형에 데이터 0건이면 다른 유형 자동 시도 ----
   const [fallbackMsg, setFallbackMsg] = useState<string | null>(null);
+  const fallbackTriedRef = useRef<Set<string>>(new Set());
   useEffect(() => {
     if (currentTx.loading || userOverrode) return;
+    // 아직 fetch 시작도 안 한 상태 (sale/rent 모두 undefined) → 대기
+    if (currentTx.sale === undefined && currentTx.rent === undefined) return;
     const saleCount = currentTx.sale?.count ?? 0;
     const rentCount = currentTx.rent?.count ?? 0;
     if (saleCount + rentCount > 0) {
       setFallbackMsg(null);
       return;
     }
-    // 0건 → 다른 유형 중 데이터 있는 것 찾기
+    // 이미 이 유형에서 폴백 시도했으면 중복 방지
+    if (fallbackTriedRef.current.has(propertyType)) return;
+    fallbackTriedRef.current.add(propertyType);
+
+    // 0건 → 다른 유형 중 데이터 있는 것 찾기 (이미 로드된 것만)
     const original = propertyType;
     const fallbackOrder: ZjPropertyType[] = ["아파트", "연립다세대", "오피스텔", "단독다가구"];
     for (const alt of fallbackOrder) {
-      if (alt === original) continue;
+      if (alt === original || fallbackTriedRef.current.has(alt)) continue;
       const altTx = txMap[alt];
-      if (altTx.sale || altTx.rent) {
+      // 로드 완료된 것만 체크 (undefined면 아직 미로드 → 스킵)
+      if (altTx.sale !== undefined || altTx.rent !== undefined) {
         const altTotal = (altTx.sale?.count ?? 0) + (altTx.rent?.count ?? 0);
         if (altTotal > 0) {
           setPropertyType(alt);
-          setFallbackMsg(`${original} 거래 0건 → ${alt} 시세로 대체 표시 중. 동네 전체 ${alt} 기준입니다.`);
+          setFallbackMsg(`${original} 거래 0건 → ${alt} 시세로 대체 표시 중.`);
           return;
         }
       }
     }
-    // 아직 로드 안 된 유형이면 로드 트리거 (fetchedRef 기반)
+    // 미로드 유형 중 첫 번째를 로드 트리거
     for (const alt of fallbackOrder) {
-      if (alt === original) continue;
+      if (alt === original || fallbackTriedRef.current.has(alt)) continue;
       if (!fetchedRef.current.has(`${regionCode}:${alt}`)) {
         setPropertyType(alt);
         setFallbackMsg(`${original} 거래 0건 → ${alt} 시세 조회 중...`);
         return;
       }
     }
-    setFallbackMsg(`${original} 포함 모든 유형에서 거래 데이터가 없습니다.`);
+    setFallbackMsg(`이 지역에서 모든 유형의 거래 데이터가 부족합니다.`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentTx.loading, currentTx.sale?.count, currentTx.rent?.count]);
+  }, [currentTx.loading, currentTx.sale, currentTx.rent]);
 
   if (loading) {
     return (
