@@ -41,9 +41,10 @@ export default function ZjBottomTabBar() {
   return (
     <nav
       aria-label="하단 메뉴"
-      className="fixed inset-x-0 bottom-0 z-40 md:hidden px-3 pb-[env(safe-area-inset-bottom)]"
+      className="fixed inset-x-0 bottom-0 z-40 md:hidden will-change-transform"
+      style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
-      <div className="glass-card rounded-full shadow-ambient-lg px-3 py-2 mb-2">
+      <div className="glass-card mx-3 mb-1 rounded-full shadow-ambient-lg px-3 py-2.5">
         <ul className="flex items-center justify-around">
           {TABS.map((tab) => {
             const isActive =
