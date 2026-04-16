@@ -12,7 +12,8 @@ import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MapPin, Share2 } from "lucide-react";
+import { MapPin, Share2, Bookmark } from "lucide-react";
+import { useSavedProperties } from "@/hooks/zipjikimi/useSavedProperties";
 import { cn } from "@/lib/utils";
 import ZjSummaryReportCard from "./ZjSummaryReportCard";
 import ZjSimilarDealsHint from "./ZjSimilarDealsHint";
@@ -137,6 +138,8 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
     [],
   );
   const fetchedRef = useRef<Set<string>>(new Set());
+  const { add: saveProperty, properties: savedProps } = useSavedProperties();
+  const isSaved = savedProps.some((p) => p.address === address);
 
   // ---- 1) 주소 해석 + 건축물대장 + 용도지역 ----
   useEffect(() => {
@@ -350,21 +353,48 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
                 {resolved.bjdongCode}
               </div>
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                const url = window.location.href;
-                navigator.clipboard.writeText(url).then(() => {
-                  toast.success("링크가 복사되었습니다");
-                }).catch(() => {
-                  toast.error("복사 실패");
-                });
-              }}
-              className="shrink-0 h-10 w-10 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center active:scale-95 transition-all"
-              aria-label="검색 결과 공유"
-            >
-              <Share2 className="h-4 w-4" strokeWidth={2.5} />
-            </button>
+            <div className="flex gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => {
+                  if (!isSaved && resolved) {
+                    saveProperty({
+                      address: address,
+                      addressRoad: resolved.addressRoad,
+                      buildingName: building?.[0]?.buildingName,
+                      regionCode: resolved.regionCode,
+                      builtYear: building?.[0]?.builtYear,
+                      mainPurpose: building?.[0]?.mainPurpose,
+                      avgSalePrice: shownSale?.avgPrice,
+                      avgJeonseDeposit: shownJeonse?.avgDeposit,
+                    });
+                    toast.success("물건이 저장되었습니다");
+                  }
+                }}
+                disabled={isSaved}
+                className={cn(
+                  "h-10 w-10 rounded-full flex items-center justify-center active:scale-95 transition-all",
+                  isSaved ? "bg-white/30" : "bg-white/15 hover:bg-white/25",
+                )}
+                aria-label="물건 저장"
+              >
+                <Bookmark className="h-4 w-4" strokeWidth={2.5} fill={isSaved ? "currentColor" : "none"} />
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href).then(() => {
+                    toast.success("링크가 복사되었습니다");
+                  }).catch(() => {
+                    toast.error("복사 실패");
+                  });
+                }}
+                className="h-10 w-10 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center active:scale-95 transition-all"
+                aria-label="검색 결과 공유"
+              >
+                <Share2 className="h-4 w-4" strokeWidth={2.5} />
+              </button>
+            </div>
           </CardContent>
         </Card>
       )}
