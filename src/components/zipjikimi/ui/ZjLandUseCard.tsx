@@ -18,7 +18,8 @@ import type {
   ZjLandZoneCategory,
 } from "@/types/zipjikimi/landUse";
 
-const VWORLD_ENDPOINT = "https://api.vworld.kr/ned/data/getLandUseAttr";
+// Next.js Rewrite 프록시 경유 — CORS 우회
+const VWORLD_ENDPOINT = "/api/vworld/ned/data/getLandUseAttr";
 
 const CATEGORY_CHIP: Record<ZjLandZoneCategory, string> = {
   주거: "chip-safe",
