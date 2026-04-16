@@ -1,16 +1,24 @@
+"use client";
+
 /**
  * @file ZjLandUseCard.tsx
- * @description F11 용도지역 카드
+ * @description F11 용도지역 카드 — 클라이언트에서 VWorld 직접 호출
+ *   Vercel 서버리스(미국)에서 VWorld(한국) 호출 시 502 차단 → 브라우저(한국)에서 직접 호출로 우회.
  * @module components/zipjikimi/ui
  */
 
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import type {
   ZjLandUseSummary,
+  ZjLandUseRecord,
   ZjLandZoneCategory,
 } from "@/types/zipjikimi/landUse";
+
+const VWORLD_ENDPOINT = "https://api.vworld.kr/ned/data/getLandUseAttr";
 
 const CATEGORY_CHIP: Record<ZjLandZoneCategory, string> = {
   주거: "chip-safe",
@@ -24,11 +32,102 @@ const CATEGORY_CHIP: Record<ZjLandZoneCategory, string> = {
 };
 
 export interface ZjLandUseCardProps {
-  data?: ZjLandUseSummary;
-  error?: string;
+  pnu?: string;
 }
 
-export default function ZjLandUseCard({ data, error }: ZjLandUseCardProps) {
+function classifyZone(name: string): ZjLandZoneCategory {
+  if (name.includes("주거")) return "주거";
+  if (name.includes("상업")) return "상업";
+  if (name.includes("공업")) return "공업";
+  if (name.includes("녹지")) return "녹지";
+  if (name.includes("관리")) return "관리";
+  if (name.includes("농림")) return "농림";
+  if (name.includes("자연환경")) return "자연환경보전";
+  return "기타";
+}
+
+export default function ZjLandUseCard({ pnu }: ZjLandUseCardProps) {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<ZjLandUseSummary | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const vworldKey = process.env.NEXT_PUBLIC_ZJ_VWORLD_API_KEY;
+
+  useEffect(() => {
+    if (!pnu || !vworldKey) {
+      if (!vworldKey) setError("VWORLD_KEY_MISSING");
+      return;
+    }
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+    setData(null);
+
+    (async () => {
+      try {
+        const params = new URLSearchParams({
+          key: vworldKey,
+          pnu,
+          format: "json",
+          numOfRows: "100",
+          pageNo: "1",
+          domain: window.location.hostname,
+        });
+        const res = await fetch(`${VWORLD_ENDPOINT}?${params}`);
+        if (!res.ok) throw new Error(`VWorld ${res.status}`);
+        const json = (await res.json()) as {
+          landUses?: {
+            field?: Record<string, unknown> | Record<string, unknown>[];
+            totalCount?: string | number;
+          };
+          response?: {
+            result?: { featureCollection?: { features?: Array<{ properties?: Record<string, unknown> }> } };
+          };
+        };
+
+        // JSON 응답 파싱 (VWorld NED JSON 형식)
+        let fields: Record<string, unknown>[] = [];
+        if (json.landUses?.field) {
+          const f = json.landUses.field;
+          fields = Array.isArray(f) ? f : [f];
+        }
+        // 다른 JSON 응답 형식 대응
+        if (fields.length === 0 && json.response?.result?.featureCollection?.features) {
+          fields = json.response.result.featureCollection.features
+            .map((f) => f.properties ?? {});
+        }
+
+        if (cancelled) return;
+
+        const records: ZjLandUseRecord[] = fields.map((raw) => {
+          const zoneName =
+            String(raw["prposAreaDstrcCodeNm"] ?? raw["prposArea"] ?? "-").trim();
+          return {
+            zoneName,
+            category: classifyZone(zoneName),
+            districtName: raw["dstrcCodeNm"]
+              ? String(raw["dstrcCodeNm"]).trim()
+              : undefined,
+          };
+        });
+
+        const primary =
+          records.find((r) =>
+            ["주거", "상업", "공업", "녹지"].includes(r.category),
+          ) ?? records[0];
+
+        setData({ primary, records, pnu });
+      } catch (e) {
+        if (!cancelled) setError(String(e));
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [pnu, vworldKey]);
+
   return (
     <Card>
       <CardContent className="space-y-4">
@@ -37,20 +136,18 @@ export default function ZjLandUseCard({ data, error }: ZjLandUseCardProps) {
           <div className="font-headline font-bold text-lg mt-1">용도지역</div>
         </div>
 
-        {error ? (
+        {loading ? (
+          <Skeleton className="h-16 rounded-2xl" />
+        ) : error ? (
           error.includes("VWORLD") || error.includes("VWorld") ? (
             <p className="text-sm text-on-surface-variant leading-relaxed">
               용도지역 조회는 <strong>VWorld 무료 인증키</strong>가 필요합니다.
               <br />
-              <a
-                href="https://www.vworld.kr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary underline underline-offset-2 mt-1 inline-block font-semibold"
-              >
-                VWorld 회원가입 → 인증키 신청 →
-              </a>{" "}
-              .env.local 에 <code className="text-xs bg-surface-container-low px-1 py-0.5 rounded">ZJ_VWORLD_API_KEY</code> 추가.
+              Vercel 환경변수에{" "}
+              <code className="text-xs bg-surface-container-low px-1 py-0.5 rounded">
+                NEXT_PUBLIC_ZJ_VWORLD_API_KEY
+              </code>{" "}
+              추가.
             </p>
           ) : (
             <p className="text-sm text-on-surface-variant">{error}</p>
@@ -61,7 +158,7 @@ export default function ZjLandUseCard({ data, error }: ZjLandUseCardProps) {
               이 필지의 용도지역 정보가 등록되어 있지 않습니다.
               <br />
               <span className="text-xs">
-                대형 복합건물·공동소유지·재개발구역 등에서 가끔 발생하며, 실제로 도시계획이 확정되지 않았을 수도 있습니다.
+                대형 복합건물·공동소유지 등에서 가끔 발생합니다.
               </span>
             </p>
             <a
@@ -105,7 +202,10 @@ export default function ZjLandUseCard({ data, error }: ZjLandUseCardProps) {
                     <li key={i} className="text-[13px]">
                       {r.zoneName}
                       {r.districtName && (
-                        <span className="text-on-surface-variant"> · {r.districtName}</span>
+                        <span className="text-on-surface-variant">
+                          {" "}
+                          · {r.districtName}
+                        </span>
                       )}
                     </li>
                   ))}

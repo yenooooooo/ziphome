@@ -546,7 +546,16 @@ export default function ZjPropertyResult({ address }: ZjPropertyResultProps) {
       )}
 
       {/* 용도지역 */}
-      <ZjLandUseCard data={landUse} error={landUseError} />
+      <ZjLandUseCard
+        pnu={
+          resolved
+            ? resolved.bCode +
+              (resolved.platGbCd ?? "0") +
+              (resolved.bun ?? "0000") +
+              (resolved.ji ?? "0000")
+            : undefined
+        }
+      />
 
       {/* 재개발·재건축 */}
       <ZjRedevelopmentCard sido={resolved?.sido} sigungu={resolved?.sigungu} />

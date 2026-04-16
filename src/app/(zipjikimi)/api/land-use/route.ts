@@ -11,8 +11,6 @@ import { resolveAddress } from "@/lib/zipjikimi/utils/address";
 import type { ZjLandUseSummary } from "@/types/zipjikimi/landUse";
 import type { ZjApiResponse } from "@/types/zipjikimi/api";
 
-// Edge Runtime — 한국 사용자 접속 시 한국 Edge에서 실행되어 VWorld 해외 IP 차단 우회
-export const runtime = "edge";
 
 export async function GET(
   req: Request,
