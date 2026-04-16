@@ -41,15 +41,10 @@ export default function ZjBottomTabBar() {
   return (
     <nav
       aria-label="하단 메뉴"
-      className="fixed inset-x-3 bottom-3 z-40 md:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 md:hidden px-3 pb-[env(safe-area-inset-bottom)]"
     >
-      <div
-        className={cn(
-          "glass-card rounded-full shadow-ambient-lg px-2 pt-2",
-          "pb-[calc(0.5rem+env(safe-area-inset-bottom))]",
-        )}
-      >
-        <ul className="flex items-stretch justify-between">
+      <div className="glass-card rounded-full shadow-ambient-lg px-3 py-2 mb-2">
+        <ul className="flex items-center justify-around">
           {TABS.map((tab) => {
             const isActive =
               tab.href === "/"
@@ -57,11 +52,11 @@ export default function ZjBottomTabBar() {
                 : !!tab.matchPrefix && pathname.startsWith(tab.matchPrefix);
             const Icon = tab.icon;
             return (
-              <li key={tab.href} className="flex-1">
+              <li key={tab.href}>
                 <Link
                   href={tab.href}
                   className={cn(
-                    "flex flex-col items-center justify-center gap-0.5 min-h-12 py-1.5",
+                    "flex flex-col items-center justify-center gap-0.5 w-14 h-12",
                     "rounded-full transition-all",
                     isActive
                       ? "text-primary"
