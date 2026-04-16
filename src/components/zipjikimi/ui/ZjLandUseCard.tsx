@@ -56,7 +56,7 @@ export default function ZjLandUseCard({ pnu }: ZjLandUseCardProps) {
 
   useEffect(() => {
     if (!pnu || !vworldKey) {
-      if (!vworldKey) setError("VWORLD_KEY_MISSING");
+      if (!vworldKey) setError("VWORLD_KEY_MISSING: VWorld 인증키 필요");
       return;
     }
     let cancelled = false;

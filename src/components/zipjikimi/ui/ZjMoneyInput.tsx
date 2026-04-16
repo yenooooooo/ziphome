@@ -27,7 +27,9 @@ function formatComma(n: number): string {
 function parseDigits(s: string): number | null {
   const cleaned = s.replace(/[^0-9]/g, "");
   if (cleaned === "") return null;
-  return Number(cleaned);
+  const num = Number(cleaned);
+  if (!Number.isFinite(num) || num > 99_999_999) return null;
+  return num;
 }
 
 export default function ZjMoneyInput({

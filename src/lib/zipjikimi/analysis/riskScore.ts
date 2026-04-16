@@ -95,6 +95,7 @@ function scoreTrend(records?: ZjTransactionRecord[]): number {
   if (recent.length < 2 || prior.length < 2) return 5;
   const r = recent.reduce((a, b) => a + b, 0) / recent.length;
   const p = prior.reduce((a, b) => a + b, 0) / prior.length;
+  if (p <= 0) return 5;
   const change = (r - p) / p;
   if (change <= -0.1) return 20;
   if (change <= -0.03) return 10;

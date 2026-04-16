@@ -39,7 +39,12 @@ export default function ZjTransactionListCard({
     return monthlySummary;
   }, [tab, saleSummary, jeonseSummary, monthlySummary]);
 
-  const avg = tab === "sale" ? summary?.avgPrice : summary?.avgDeposit;
+  const avg =
+    tab === "sale"
+      ? summary?.avgPrice
+      : tab === "jeonse"
+        ? summary?.avgDeposit
+        : summary?.avgDeposit; // 월세도 보증금 평균 기준
 
   return (
     <Card>

@@ -147,7 +147,7 @@ export function detectFraudFromSummaries(
     if (recent.length >= 2 && prior.length >= 2) {
       const rAvg = recent.reduce((a, b) => a + b, 0) / recent.length;
       const pAvg = prior.reduce((a, b) => a + b, 0) / prior.length;
-      priceChangeRate = (rAvg - pAvg) / pAvg;
+      if (pAvg > 0) priceChangeRate = (rAvg - pAvg) / pAvg;
     }
   }
 

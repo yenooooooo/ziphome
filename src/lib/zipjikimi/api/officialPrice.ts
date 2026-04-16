@@ -40,6 +40,6 @@ export async function fetchOfficialPriceByKaptCode(
   //   - 단지코드 매칭: 국토부 아파트 단지코드 API 선행 호출 필요
   //
   //   현재는 스켈레톤 — UI에서는 "데모 데이터" 문구와 함께 표시
-  void fetchDataGoKrXml; // unused import silencer — 실제 연동 시 활성화
+  // TODO(F07): fetchDataGoKrXml 활용해서 공시가격 엔드포인트 연동
   return [];
 }

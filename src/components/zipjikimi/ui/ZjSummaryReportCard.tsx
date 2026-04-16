@@ -110,7 +110,7 @@ export default function ZjSummaryReportCard({
           />
           <MiniBlock
             icon={<TrendIcon className="h-4 w-4 text-primary" />}
-            label="매매 평균"
+            label={`매매 ${trendDir === "up" ? "↑" : trendDir === "down" ? "↓" : ""}`}
             value={
               saleSummary?.avgPrice
                 ? formatKRW(saleSummary.avgPrice, { compact: true })
@@ -118,7 +118,7 @@ export default function ZjSummaryReportCard({
             }
           />
           <MiniBlock
-            icon={<TrendIcon className="h-4 w-4 text-primary" />}
+            icon={<Minus className="h-4 w-4 text-primary" />}
             label="전세 평균"
             value={
               jeonseSummary?.avgDeposit
