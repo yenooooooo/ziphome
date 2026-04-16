@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 집지킴이 기본 아이콘 — 집 + 방패 + "집" 글자 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+  <!-- 배경 (라운드 사각형) -->
+  <rect width="512" height="512" rx="96" ry="96" fill="url(#bg)"/>
+  <!-- 집 + 방패 실루엣 -->
+  <g transform="translate(256 270)">
+    <!-- 방패 -->
+    <path d="M0 -130 L110 -90 L110 40 Q110 115 0 155 Q-110 115 -110 40 L-110 -90 Z"
+          fill="#ffffff" fill-opacity="0.16" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+    <!-- 집 (삼각 지붕 + 사각 몸체) -->
+    <path d="M-70 -30 L0 -90 L70 -30 L70 55 L-70 55 Z"
+          fill="#ffffff" stroke="#1D4ED8" stroke-width="4" stroke-linejoin="round"/>
+    <!-- 문 -->
+    <rect x="-16" y="5" width="32" height="50" fill="#1D4ED8" rx="3"/>
+  </g>
+  <!-- "집" 글자 (하단) -->
+  <text x="256" y="470"
+        font-family="system-ui, -apple-system, 'Apple SD Gothic Neo', sans-serif"
+        font-size="80" font-weight="800" fill="#ffffff"
+        text-anchor="middle" letter-spacing="-2">집지킴이</text>
+</svg>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ZipJikimi - Property Detail Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "secondary": "#545f73",
+                    "tertiary": "#1e1200",
+                    "secondary-fixed": "#d8e3fb",
+                    "surface-tint": "#0053db",
+                    "inverse-surface": "#213145",
+                    "surface-variant": "#d3e4fe",
+                    "on-tertiary-fixed": "#271902",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "on-tertiary-container": "#a38c6a",
+                    "on-primary-container": "#5f8aff",
+                    "on-background": "#0b1c30",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#111c2d",
+                    "primary-container": "#002367",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "tertiary-fixed-dim": "#ddc39d",
+                    "on-primary-fixed": "#00174b",
+                    "outline": "#75777d",
+                    "surface": "#f8f9ff",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#fadfb8",
+                    "primary": "#00113b",
+                    "on-surface": "#0b1c30",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#d5e0f8",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-container": "#586377",
+                    "outline-variant": "#c5c6cd",
+                    "on-surface-variant": "#45474c",
+                    "on-tertiary-fixed-variant": "#564427",
+                    "surface-container-low": "#eff4ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#35260c",
+                    "background": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .gauge-mask {
+            clip-path: inset(0 0 50% 0);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased mb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-900" data-icon="location_on">location_on</span>
+<span class="text-xl font-black text-slate-900 font-headline tracking-tight">ZipJikimi</span>
+</div>
+<div class="h-10 w-10 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a young male user with a friendly expression in a corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGtH2x2u_DFZTZd-zbA8P1p2CGxOoqCj-LhGp9lQaodrx-emJ6FjfFtIzUtQDDszV5XFMebtKnqsSWQyNpulwmwvqQF3ODq_xbyzGsB-qcTQuOnawGR8P2X0tB-Zu-02r2nAtYrD4SEOpn-qr964K_ACp8Pu9F_Q7UXwlm4WvtJtm2xSTqZljCAhZpmqNqa4ACnrrRIKCkWc6ObN4SF6KUfXewUbaJ_lE4V-SS3S9nzXA9b8C8Rb_ZDGxM9Og6Lu0SUcsLaZFOYdAG"/>
+</div>
+</header>
+<main class="mt-16 max-w-5xl mx-auto px-4 lg:px-0">
+<!-- Hero Section: Property Image & Address -->
+<section class="relative w-full h-[400px] rounded-xl overflow-hidden mb-8 mt-4 group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="modern minimalist apartment complex with large glass windows at twilight with warm interior lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkfxr6EIwECkVnvbhYOgce2b-CpaAuLV8kR98QkM1ax16_io4jbdfp4phxnytFq_M2xRjlOAd6AtZs97P21P-xX_V4AfK0YTVWJn1NI7gMG2vMpPfb8MNYIqL-YZ_f4WR1IviQxnAaMkSvZHsSnTna4WqvAgand_ChBI3S4bGJa6FGABijBYuKVSyi67DS1O0dGPMPBClmHjAE47hnM9y54TuhJmdONfobhKqVhwjuBwa4HH277_YiJJuv4Ay3xW2tPssAcOqOXW9o"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8">
+<div class="flex flex-col gap-2">
+<span class="inline-flex items-center px-3 py-1 bg-primary text-white text-xs font-bold rounded-full w-max uppercase tracking-widest">Premium Analysis</span>
+<h1 class="text-white text-3xl md:text-5xl font-headline font-extrabold tracking-tight">Gangnam-gu Sinsa-dong 12-4</h1>
+<p class="text-white/80 text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="apartment">apartment</span>
+                        Hillstate Signature Tower, Unit 1402
+                    </p>
+</div>
+</div>
+</section>
+<!-- Bento Grid Analysis -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 pb-12">
+<!-- Section 1: Safety Grade -->
+<div class="md:col-span-5 bg-surface-container-lowest p-8 rounded-lg shadow-[0_20px_40px_rgba(11,28,48,0.06)] flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-outline/30 text-6xl rotate-12" data-icon="shield">shield</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-8 self-start">Safety Grade</h3>
+<!-- Semi-circular Gauge -->
+<div class="relative w-64 h-32 overflow-hidden">
+<div class="absolute top-0 left-0 w-64 h-64 border-[16px] border-surface-container rounded-full"></div>
+<!-- Active Gauge Segment (Caution) -->
+<div class="absolute top-0 left-0 w-64 h-64 border-[16px] border-transparent border-t-tertiary-fixed-dim border-r-tertiary-fixed-dim rounded-full rotate-[135deg]"></div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center">
+<span class="text-4xl font-headline font-black text-on-tertiary-fixed-variant">Caution</span>
+<span class="text-xs font-label text-outline uppercase tracking-widest font-semibold">Moderate Risk</span>
+</div>
+</div>
+<div class="mt-8 flex gap-4 w-full">
+<div class="flex-1 p-4 bg-surface-container-low rounded-md text-center">
+<p class="text-[10px] uppercase font-bold text-outline">Risk Level</p>
+<p class="text-lg font-headline font-bold text-on-surface">62%</p>
+</div>
+<div class="flex-1 p-4 bg-surface-container-low rounded-md text-center">
+<p class="text-[10px] uppercase font-bold text-outline">Reliability</p>
+<p class="text-lg font-headline font-bold text-on-surface">High</p>
+</div>
+</div>
+</div>
+<!-- Section 2: Registry Highlights -->
+<div class="md:col-span-7 bg-primary text-white p-8 rounded-lg shadow-[0_20px_40px_rgba(11,28,48,0.06)] flex flex-col justify-between">
+<div>
+<h3 class="font-headline font-bold text-xl mb-6">Registry Highlights</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-white/10 rounded-md border-l-4 border-tertiary-fixed">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary-fixed" data-icon="payments">payments</span>
+<span class="font-medium">Collateral</span>
+</div>
+<span class="font-headline font-bold">200M KRW</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/10 rounded-md border-l-4 border-green-400">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-400" data-icon="verified_user">verified_user</span>
+<span class="font-medium">Ownership</span>
+</div>
+<span class="font-headline font-bold">Match</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/10 rounded-md border-l-4 border-error">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<span class="font-medium">Seizure History</span>
+</div>
+<span class="font-headline font-bold text-error-container">1 Found (2019)</span>
+</div>
+</div>
+</div>
+<button class="mt-8 w-full bg-surface-container-lowest text-primary py-4 rounded-full font-headline font-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+                    Full Registry (Paid)
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Section 3: Market Price Trend -->
+<div class="md:col-span-8 bg-surface-container-lowest p-8 rounded-lg shadow-[0_20px_40px_rgba(11,28,48,0.06)] h-full">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline font-bold text-xl">Market Price Trend</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold rounded-full">5 YEARS</span>
+</div>
+</div>
+<!-- Visual Chart Placeholder -->
+<div class="relative h-48 w-full flex items-end justify-between gap-1">
+<div class="w-full h-full absolute flex flex-col justify-between">
+<div class="w-full border-b border-outline-variant/10 h-0"></div>
+<div class="w-full border-b border-outline-variant/10 h-0"></div>
+<div class="w-full border-b border-outline-variant/10 h-0"></div>
+<div class="w-full border-b border-outline-variant/10 h-0"></div>
+</div>
+<div class="relative w-full h-full">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0,35 Q10,32 20,30 T40,25 T60,20 T80,10 T100,5" fill="none" stroke="url(#gradient)" stroke-width="2"></path>
+<defs>
+<lineargradient id="gradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#dbe1ff;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#00113b;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Markers -->
+<div class="absolute bottom-[-20px] left-0 text-[10px] font-bold text-outline">2019</div>
+<div class="absolute bottom-[-20px] right-0 text-[10px] font-bold text-outline">2024</div>
+</div>
+</div>
+<div class="mt-12 p-4 bg-surface-container rounded-md flex justify-between items-center">
+<div>
+<p class="text-[10px] font-bold text-outline uppercase">Current Valuation</p>
+<p class="text-2xl font-headline font-black text-primary">1,450M KRW</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-outline uppercase">Appreciation</p>
+<p class="text-lg font-headline font-bold text-on-primary-fixed-variant">+22.4%</p>
+</div>
+</div>
+</div>
+<!-- Section 4: Building Info -->
+<div class="md:col-span-4 bg-surface-container-high p-8 rounded-lg shadow-[0_20px_40px_rgba(11,28,48,0.06)]">
+<h3 class="font-headline font-bold text-xl mb-8">Building Info</h3>
+<div class="space-y-6">
+<div>
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest mb-1">Year Built</p>
+<p class="text-lg font-headline font-bold text-on-surface">2018 (6 yrs old)</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest mb-1">Purpose</p>
+<p class="text-lg font-headline font-bold text-on-surface">Multi-Family House</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest mb-1">Floor Area</p>
+<p class="text-lg font-headline font-bold text-on-surface">84.95 m² (25.7 py)</p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2 text-sm text-outline font-medium">
+<span class="material-symbols-outlined text-sm" data-icon="layers">layers</span>
+                            Total 24 Floors
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-white/80 backdrop-blur-2xl flex justify-around items-center px-4 pt-3 pb-8 shadow-[0_-20px_40px_rgba(11,28,48,0.06)] rounded-t-[32px]">
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-slate-900 text-white rounded-full w-12 h-12 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="domain" style="font-variation-settings: 'FILL' 1;">domain</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "secondary": "#545f73",
+                    "tertiary": "#1e1200",
+                    "secondary-fixed": "#d8e3fb",
+                    "surface-tint": "#0053db",
+                    "inverse-surface": "#213145",
+                    "surface-variant": "#d3e4fe",
+                    "on-tertiary-fixed": "#271902",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "on-tertiary-container": "#a38c6a",
+                    "on-primary-container": "#5f8aff",
+                    "on-background": "#0b1c30",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#111c2d",
+                    "primary-container": "#002367",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "tertiary-fixed-dim": "#ddc39d",
+                    "on-primary-fixed": "#00174b",
+                    "outline": "#75777d",
+                    "surface": "#f8f9ff",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#fadfb8",
+                    "primary": "#00113b",
+                    "on-surface": "#0b1c30",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#d5e0f8",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-container": "#586377",
+                    "outline-variant": "#c5c6cd",
+                    "on-surface-variant": "#45474c",
+                    "on-tertiary-fixed-variant": "#564427",
+                    "surface-container-low": "#eff4ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-container": "#35260c",
+                    "background": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Background: Blurred Property Detail Page -->
+<div class="fixed inset-0 z-0 overflow-y-auto filter blur-md pointer-events-none scale-105">
+<!-- Predicted TopAppBar (Simulated Background) -->
+<header class="flex justify-between items-center px-6 h-16 w-full bg-slate-50/70">
+<span class="text-xl font-black text-slate-900 font-headline">ZipJikimi</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest"></div>
+</header>
+<main class="max-w-4xl mx-auto px-6 pt-8 pb-24">
+<div class="h-64 w-full rounded-xl mb-8 bg-surface-container-highest" data-alt="High-end modern apartment interior with sunlight streaming through large floor-to-ceiling windows and minimalist furniture"></div>
+<div class="space-y-6">
+<div class="h-10 w-2/3 bg-surface-container-high rounded-md"></div>
+<div class="grid grid-cols-3 gap-4">
+<div class="h-24 bg-surface-container-low rounded-lg"></div>
+<div class="h-24 bg-surface-container-low rounded-lg"></div>
+<div class="h-24 bg-surface-container-low rounded-lg"></div>
+</div>
+<div class="space-y-2">
+<div class="h-4 w-full bg-surface-variant rounded"></div>
+<div class="h-4 w-full bg-surface-variant rounded"></div>
+<div class="h-4 w-5/6 bg-surface-variant rounded"></div>
+</div>
+</div>
+</main>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-[100] flex items-end md:items-center justify-center bg-on-background/20 backdrop-blur-[2px] p-0 md:p-6">
+<!-- Bottom Sheet / Centered Modal -->
+<div class="relative w-full max-w-2xl max-h-[795px] overflow-hidden glass-card rounded-t-lg md:rounded-lg shadow-[0_20px_40px_rgba(11,28,48,0.15)] flex flex-col">
+<!-- Modal Header -->
+<div class="px-8 pt-8 pb-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h2 class="text-2xl font-headline font-extrabold tracking-tight text-on-surface">AI Clause Generator</h2>
+<p class="text-sm font-label font-medium text-secondary">Securing your rental contract with smart protection</p>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto px-8 pb-8 custom-scrollbar">
+<!-- Prompt Input Area -->
+<div class="mt-4 mb-8">
+<label class="block text-xs font-bold uppercase tracking-widest text-secondary mb-3 ml-1">Describe your situation</label>
+<div class="relative">
+<textarea class="w-full min-h-[100px] p-5 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary-fixed-dim transition-all text-on-surface placeholder:text-outline-variant resize-none font-medium leading-relaxed" placeholder="e.g. I am worried about hidden repairs or unexpected tax liabilities from the landlord..."></textarea>
+<div class="absolute bottom-4 right-4">
+<button class="bg-primary text-white px-5 py-2.5 rounded-full flex items-center gap-2 font-bold text-sm shadow-lg hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">temp_preferences_custom</span>
+<span>Generate More</span>
+</button>
+</div>
+</div>
+</div>
+<!-- AI Suggested Clauses List -->
+<div class="space-y-4">
+<h3 class="text-xs font-bold uppercase tracking-widest text-secondary ml-1">Recommended Protections</h3>
+<!-- Clause Card 1 -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-primary transition-all hover:shadow-md">
+<div class="flex justify-between items-start gap-4">
+<div class="flex-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-bold uppercase tracking-wider mb-3">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                                    Tax Protection
+                                </span>
+<p class="text-[15px] font-medium leading-relaxed text-on-surface">
+                                    The landlord shall provide proof of full payment for all national and local taxes before the official contract date. Any outstanding liabilities found after signing shall be the sole responsibility of the landlord.
+                                </p>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-white transition-all active:scale-90 shadow-sm" title="Copy to Clipboard">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Clause Card 2 -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-primary transition-all hover:shadow-md">
+<div class="flex justify-between items-start gap-4">
+<div class="flex-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider mb-3">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">build</span>
+                                    Maintenance
+                                </span>
+<p class="text-[15px] font-medium leading-relaxed text-on-surface">
+                                    Landlord guarantees all major appliances and structural integrity (leaks, plumbing, heating) for the first 90 days. Repair costs for pre-existing defects must be covered by the lessor within 48 hours of notification.
+                                </p>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-white transition-all active:scale-90 shadow-sm" title="Copy to Clipboard">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Clause Card 3 -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-primary transition-all hover:shadow-md">
+<div class="flex justify-between items-start gap-4">
+<div class="flex-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold uppercase tracking-wider mb-3">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">security</span>
+                                    Deposit Safety
+                                </span>
+<p class="text-[15px] font-medium leading-relaxed text-on-surface">
+                                    In the event of property ownership transfer, the original landlord remains jointly liable for the return of the full security deposit unless a written agreement is provided by the new owner.
+                                </p>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container text-primary hover:bg-primary hover:text-white transition-all active:scale-90 shadow-sm" title="Copy to Clipboard">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="p-8 bg-surface-container-low/50 flex flex-col md:flex-row items-center gap-4">
+<div class="flex-1 text-center md:text-left">
+<p class="text-xs font-medium text-secondary italic">AI-generated clauses are for reference. Consult with a legal professional before final signing.</p>
+</div>
+<button class="w-full md:w-auto px-8 py-3.5 bg-primary text-white rounded-full font-bold text-base shadow-[0_8px_16px_rgba(0,17,59,0.2)] hover:opacity-90 active:scale-95 transition-all">
+                    Add Selected to Contract
+                </button>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ZipJikimi Dashboard | The Digital Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#bcc7de",
+                      "secondary": "#545f73",
+                      "tertiary": "#1e1200",
+                      "secondary-fixed": "#d8e3fb",
+                      "surface-tint": "#0053db",
+                      "inverse-surface": "#213145",
+                      "surface-variant": "#d3e4fe",
+                      "on-tertiary-fixed": "#271902",
+                      "primary-fixed": "#dbe1ff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "on-tertiary-container": "#a38c6a",
+                      "on-primary-container": "#5f8aff",
+                      "on-background": "#0b1c30",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#111c2d",
+                      "primary-container": "#002367",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#cbdbf5",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#b4c5ff",
+                      "tertiary-fixed-dim": "#ddc39d",
+                      "on-primary-fixed": "#00174b",
+                      "outline": "#75777d",
+                      "surface": "#f8f9ff",
+                      "surface-container": "#e5eeff",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#fadfb8",
+                      "primary": "#00113b",
+                      "on-surface": "#0b1c30",
+                      "surface-bright": "#f8f9ff",
+                      "surface-container-high": "#dce9ff",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#d5e0f8",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-secondary-container": "#586377",
+                      "outline-variant": "#c5c6cd",
+                      "on-surface-variant": "#45474c",
+                      "on-tertiary-fixed-variant": "#564427",
+                      "surface-container-low": "#eff4ff",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "tertiary-container": "#35260c",
+                      "background": "#f8f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-slate-900" data-icon="location_on">location_on</span>
+<span class="text-xl font-black text-slate-900 tracking-tight font-manrope">ZipJikimi</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden scale-95 active:scale-90 transition-transform">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Portrait of a young professional male in a soft studio lighting setting with a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD37Mr_JBE40Zr4arNYY9QyCH6xrN0bRGMqPLLJX1x-vM9lzN389onyoVBvT4RLi3PwTduijVuJ78RiTLUMe3kFyWl8ilB1-xfoRsB7Gjiyl7fc6hSOXu6MHA5QIFbtNRGpAh8xuGH8T2PMNBm5liXpuObjfl2rWUH3wrueYU3QfvYjK5G-q3gVZA_dPPOpUe9B3HGTEcZCHYt_TNtYUEvktdM6KPnpYSK4-dzObkPMtYRhsXC5CTtqF9SsP5GoZkS4ibwRu3N0FHWy"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-7xl mx-auto">
+<!-- Hero Section: Editorial Asymmetry -->
+<section class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-xl">
+<span class="text-secondary font-label font-bold tracking-widest text-[10px] uppercase mb-2 block">Safety Intelligence Dashboard</span>
+<h1 class="text-5xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-4">Welcome back, User</h1>
+<p class="text-on-surface-variant text-lg font-medium leading-relaxed">
+                    Your digital curator has reviewed your portfolio. <br class="hidden md:block"/>
+<span class="text-primary font-bold">3 items registered</span>, 1 needs attention.
+                </p>
+</div>
+<div class="bg-error-container p-6 rounded-xl flex items-center gap-4 max-w-sm shadow-[0_20px_40px_rgba(186,26,26,0.08)]">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<div class="text-on-error-container font-headline font-bold">Action Required</div>
+<div class="text-on-error-container/80 text-sm">Review "Seocho-gu Apt" contract.</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions: Glassmorphism Icons -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+<button class="flex flex-col items-start p-6 bg-surface-container-lowest rounded-lg hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-4 group-active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Registry View</span>
+</button>
+<button class="flex flex-col items-start p-6 bg-surface-container-lowest rounded-lg hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 bg-surface-container-highest text-primary rounded-full flex items-center justify-center mb-4 group-active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Price Check</span>
+</button>
+<button class="flex flex-col items-start p-6 bg-surface-container-lowest rounded-lg hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 bg-surface-container-highest text-primary rounded-full flex items-center justify-center mb-4 group-active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Safety Insurance</span>
+</button>
+<button class="flex flex-col items-start p-6 bg-surface-container-lowest rounded-lg hover:bg-surface-container transition-colors group">
+<div class="w-12 h-12 bg-surface-container-highest text-primary rounded-full flex items-center justify-center mb-4 group-active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<span class="font-headline font-bold text-on-surface">AI Contract Help</span>
+</button>
+</section>
+<!-- Main Content: Horizontal Property Cards -->
+<section class="mb-12">
+<div class="flex justify-between items-baseline mb-8">
+<h2 class="text-3xl font-extrabold tracking-tight">My Property Status</h2>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:underline">
+                    View all portfolio <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="flex flex-col gap-6">
+<!-- Card 1: High Safety -->
+<div class="bg-surface-container-lowest p-4 md:p-6 rounded-xl flex flex-col md:flex-row items-center gap-6 shadow-[0_20px_40px_rgba(11,28,48,0.06)] group">
+<div class="w-full md:w-48 h-32 rounded-lg overflow-hidden bg-surface-container-low shrink-0">
+<img alt="Property image" class="w-full h-full object-cover" data-alt="Modern minimalist luxury apartment exterior with glass balconies and afternoon sunlight reflecting on the facade" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqFSR8c84P5tPelDfhs8XYpjVnQWi6XFJH6CdMrbNRjD55JpfRdBTICHjz4TOspI4Rr6IC31HdWLEfuxntUkA759x3k1vQsAmJAP9FobQV2Saz4CnUCrP-q8eeuGSTysCnChM0f23aTFG0ECsVY_r2E_M0g1F61hSktodpwAvov3Ql3nZCAVCB4ijM_HH2f4oJcOzelh0qyEtnxnEWDtvF1jj1RaONQePWme9v1UaHiYcIoJQ0klF2RWpT_TQXU8Fp-lKo7RUE67o2"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<h3 class="text-xl font-bold text-on-surface mb-1">Gangnam-gu Studio A</h3>
+<p class="text-on-surface-variant font-medium">124 Teheran-ro, Seoul</p>
+<div class="mt-4 flex flex-wrap justify-center md:justify-start gap-2">
+<span class="px-3 py-1 bg-surface-container text-primary text-xs font-bold rounded-full">Certified Registry</span>
+<span class="px-3 py-1 bg-surface-container text-primary text-xs font-bold rounded-full">No Liens</span>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xl min-w-[140px]">
+<div class="text-4xl font-black text-primary mb-1">95<span class="text-sm font-bold opacity-60">/100</span></div>
+<span class="text-[10px] font-black uppercase tracking-widest text-primary-fixed-variant">Secure</span>
+<!-- Status Glow -->
+<div class="w-8 h-1 bg-primary-fixed-dim rounded-full mt-2 shadow-[0_0_10px_#b4c5ff]"></div>
+</div>
+</div>
+<!-- Card 2: Attention Required -->
+<div class="bg-surface-container-lowest p-4 md:p-6 rounded-xl flex flex-col md:flex-row items-center gap-6 shadow-[0_20px_40px_rgba(11,28,48,0.06)] group">
+<div class="w-full md:w-48 h-32 rounded-lg overflow-hidden bg-surface-container-low shrink-0 grayscale hover:grayscale-0 transition-all">
+<img alt="Property image" class="w-full h-full object-cover" data-alt="Classic suburban brick house facade with mature trees and soft evening shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAywvBu0PdbzOIYaw9VxKSe-WFIQboBATt_l9iKmU-LvzE9ybAeBtFZOa2gxJPoNo9xCNGbezVcH0br5wnbJ3Djf9FNKHiAzfW3GeXZTN1dLzC3kC7mRYtFOxAs6-428SK_iMAdHpDoV9MlIVCCjTr8-CsVSTBsUHGZvnYvJdqKw823uch6ApD0CvJWECwL6xNoc_aYJ7s2YU9hUpSQ653mMLAsUmdmqUQcSveceTd40RFlJShsqIg1SfeyUUHTL6mtznHar_9QhNO7"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<h3 class="text-xl font-bold text-on-surface mb-1">Seocho-gu Villa B</h3>
+<p class="text-on-surface-variant font-medium">45 Banpo-daero, Seoul</p>
+<div class="mt-4 flex flex-wrap justify-center md:justify-start gap-2">
+<span class="px-3 py-1 bg-error-container text-on-error-container text-xs font-bold rounded-full">Owner Change Detected</span>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-center justify-center p-6 bg-error-container/30 rounded-xl min-w-[140px]">
+<div class="text-4xl font-black text-error mb-1">42<span class="text-sm font-bold opacity-60">/100</span></div>
+<span class="text-[10px] font-black uppercase tracking-widest text-error">Warning</span>
+<!-- Status Glow -->
+<div class="w-8 h-1 bg-error rounded-full mt-2 shadow-[0_0_10px_#ba1a1a]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights Bento Grid Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="md:col-span-2 bg-primary text-on-primary p-8 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold mb-4">Market Security Pulse</h3>
+<p class="text-on-primary-container font-medium mb-8 max-w-sm">Regional fraud prevention scores are up 12% this month in your area.</p>
+<button class="px-6 py-3 bg-on-primary text-primary rounded-full font-bold text-sm hover:bg-primary-fixed transition-colors">
+                        Read Analysis
+                    </button>
+</div>
+<div class="absolute right-0 bottom-0 opacity-20 pointer-events-none transform translate-x-10 translate-y-10 group-hover:translate-x-5 group-hover:translate-y-5 transition-transform duration-500">
+<span class="material-symbols-outlined text-[200px]" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-8 rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Legal Watch</h3>
+<p class="text-on-surface-variant text-sm">New tenant protection laws effective starting next quarter.</p>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<span class="text-primary font-black text-2xl">Q3 Update</span>
+<div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-8 bg-white/80 backdrop-blur-2xl shadow-[0_-20px_40px_rgba(11,28,48,0.06)] rounded-t-[32px] z-50">
+<!-- Home Active -->
+<a class="flex flex-col items-center justify-center bg-slate-900 text-white rounded-full w-12 h-12 transition-all active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors rounded-full active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors rounded-full active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors rounded-full active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 w-12 h-12 hover:bg-slate-100 transition-colors rounded-full active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</a>
+</nav>
+</body></html>
