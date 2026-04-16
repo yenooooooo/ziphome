@@ -66,36 +66,39 @@ export default function ZjLandUseCard({ pnu }: ZjLandUseCardProps) {
 
     (async () => {
       try {
-        const params = new URLSearchParams({
-          key: vworldKey,
+        // 카카오 platGbCd와 VWorld PNU의 산여부 코드가 불일치하는 경우가 있어
+        // 원본 PNU 시도 → 결과 없으면 platGbCd 반전(0↔1)해서 재시도
+        const pnuVariants = [
           pnu,
-          format: "json",
-          numOfRows: "100",
-          pageNo: "1",
-          domain: window.location.hostname,
-        });
-        const res = await fetch(`${VWORLD_ENDPOINT}?${params}`);
-        if (!res.ok) throw new Error(`VWorld ${res.status}`);
-        const json = (await res.json()) as {
-          landUses?: {
-            field?: Record<string, unknown> | Record<string, unknown>[];
-            totalCount?: string | number;
-          };
-          response?: {
-            result?: { featureCollection?: { features?: Array<{ properties?: Record<string, unknown> }> } };
-          };
-        };
+          pnu.slice(0, 10) + (pnu[10] === "0" ? "1" : "0") + pnu.slice(11),
+        ];
 
-        // JSON 응답 파싱 (VWorld NED JSON 형식)
         let fields: Record<string, unknown>[] = [];
-        if (json.landUses?.field) {
-          const f = json.landUses.field;
-          fields = Array.isArray(f) ? f : [f];
-        }
-        // 다른 JSON 응답 형식 대응
-        if (fields.length === 0 && json.response?.result?.featureCollection?.features) {
-          fields = json.response.result.featureCollection.features
-            .map((f) => f.properties ?? {});
+        for (const tryPnu of pnuVariants) {
+          const params = new URLSearchParams({
+            key: vworldKey,
+            pnu: tryPnu,
+            format: "json",
+            numOfRows: "100",
+            pageNo: "1",
+            domain: window.location.hostname,
+          });
+          const res = await fetch(`${VWORLD_ENDPOINT}?${params}`);
+          if (!res.ok) continue;
+          const json = (await res.json()) as {
+            landUses?: {
+              field?: Record<string, unknown> | Record<string, unknown>[];
+            };
+            response?: {
+              totalCount?: string | number;
+            };
+          };
+
+          if (json.landUses?.field) {
+            const f = json.landUses.field;
+            fields = Array.isArray(f) ? f : [f];
+          }
+          if (fields.length > 0) break; // 데이터 찾음
         }
 
         if (cancelled) return;
