@@ -95,9 +95,7 @@ export async function fetchLandUse(q: ZjLandUseQuery): Promise<ZjLandUseSummary>
     format: "xml",
     numOfRows: "100",
     pageNo: "1",
-    domain: process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : (process.env.NEXT_PUBLIC_SITE_DOMAIN ?? "http://localhost:3000"),
+    domain: process.env.NEXT_PUBLIC_SITE_DOMAIN ?? "https://ziphome.vercel.app",
   });
 
   const res = await fetch(`${VWORLD_ENDPOINT}?${params}`, {
